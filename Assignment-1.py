@@ -5,7 +5,7 @@ image = cv2.imread('vrushaket.jpeg')
 m,n,v = image.shape                                      
 gray_image = np.zeros((m,n),np.uint8)                   
 binary = np.zeros((m,n),np.uint8)  
-image_onezeroes2 = np.zeros((m,n),np.uint8)
+added_const = np.zeros((m,n),np.uint8)
 print("dimensions of image is {}x{}x{}".format(m,n,v))
 
 Sum = 0
@@ -26,3 +26,10 @@ for x in range(m):
           binary[x][y]=255
 
 cv2.imwrite("binary.png",binary)
+
+for x in range(m):
+    for y in range(n):
+        k=min(gray_image[x][y]+34,255)
+        added_const[x][y]=k
+
+cv2.imwrite("Const.png",added_const)
